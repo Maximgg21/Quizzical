@@ -1,0 +1,15 @@
+.intro-page {
+    text-align: center;
+}
+
+.intro-page h1 {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+.intro-page button {
+    padding: 1.5em 5em;
+    margin-top: 1em;
+}
+

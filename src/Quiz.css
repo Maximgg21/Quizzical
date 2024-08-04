@@ -1,0 +1,62 @@
+/* Typography */
+
+.quiz h2 {
+    font-size: 1.5rem;  /* 24px */
+    font-weight: 700;
+    margin: 0;
+    width: 100%;
+}
+
+.quiz label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: 1.5px solid rgba(77, 91, 158, 1);
+    border-radius: 15px;
+    padding: 0.5em 1em;
+    min-width: 70px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.quiz label:has(input:checked) {
+    background: rgba(214, 219, 245, 1);
+    border-color: rgba(214, 219, 245, 1);
+}
+
+.quiz label:has(input).wrong-answer {
+    background: rgba(248, 188, 188, 1);
+    border-color: rgba(248, 188, 188, 1);
+}
+
+.quiz .quiz-questions label:has(input).correct-answer {
+    background: rgba(148, 215, 162, 1);
+    border-color: rgba(148, 215, 162, 1);
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.quiz .question {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.quiz .results {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+.results p {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.quiz button {
+    padding: 1.3em 4em;
+}
+

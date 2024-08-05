@@ -96,6 +96,7 @@ export default function Quiz(props) {
         allInputs.forEach(input => {
             input.parentElement.classList.remove("wrong-answer", "correct-answer", "opaque-wrong-answers")
         })
+        window.moveTo(0, 0)
         setQuizFinished(false)
         setNumCorrectAnswers(0)
     }

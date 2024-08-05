@@ -28,6 +28,10 @@
     border-color: rgba(248, 188, 188, 1);
 }
 
+.quiz label:has(input).opaque-wrong-answers {
+    opacity: 0.5;
+}
+
 .quiz .quiz-questions label:has(input).correct-answer {
     background: rgba(148, 215, 162, 1);
     border-color: rgba(148, 215, 162, 1);

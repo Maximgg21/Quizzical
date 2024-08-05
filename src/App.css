@@ -56,3 +56,25 @@ button:focus {
 button:active {
     transform: translateY(2px)
 }
+
+img {
+  position: fixed;
+  width: 20%;
+  z-index: -1;
+}
+
+img.blue-blob {
+  bottom: 0;
+  left: 0;
+}
+
+img.yellow-blob {
+  top: 0;
+  right: 0;
+}
+
+@media screen and (max-width: 650px) {
+  main {
+    padding: 1em;
+  }
+}

@@ -1,5 +1,6 @@
 .intro-page {
     text-align: center;
+    width: 100%;
 }
 
 .intro-page h1 {
@@ -8,8 +9,20 @@
     font-weight: 700;
 }
 
+.settings-choice {
+    display: flex;
+    gap: 0.8em;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.settings-choice input,
+.settings-choice select {
+    padding: 0.5em 1em;
+}
+
 .intro-page button {
     padding: 1.5em 5em;
-    margin-top: 1em;
+    margin-top: 2em;
 }
 

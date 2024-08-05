@@ -3,19 +3,17 @@ import he from "he"
 import Answer from "./Answer"
 import "./Quiz.css"
 
-export default function Quiz() {
-    
+export default function Quiz(props) {
+    const {amount, category, difficulty} = props
     const [quizData, setQuizData] = React.useState()
-    const [quizElements, setQuizElements] = React.useState()
+    const [quizElements, setQuizElements] = React.useState([])
     const [numCorrectAnswers, setNumCorrectAnswers] = React.useState(0) 
     const [quizFinished, setQuizFinished] = React.useState(false)
-
-    console.log(quizData)
 
     React.useEffect(() => {
         async function getData() {
             try {
-                const response = await fetch("https://opentdb.com/api.php?amount=5&category=15&difficulty=easy&type=multiple")
+                const response = await fetch(`https://opentdb.com/api.php?amount=${amount}&${category}&${difficulty}&type=multiple`)
                 const results = await response.json()
                 setQuizData(results.results)
             } catch (error) {
@@ -58,7 +56,7 @@ export default function Quiz() {
                     <hr />
                 </>
             )
-        }) : false)
+        }) : [])
     }, [quizData])
 
     function submitQuiz(e) {
@@ -71,10 +69,11 @@ export default function Quiz() {
 
         quizData.forEach((quiz, i) => {
             for (let j = i*4; j < (i+1)*4; j++) {
+                allInputs[j].parentElement.classList.add("opaque-wrong-answers")
                 if (he.decode(quiz.correct_answer) === allInputs[j].value) {
+                    allInputs[j].parentElement.classList.remove("opaque-wrong-answers")
                     allInputs[j].parentElement.classList.remove("wrong-answer")
                     allInputs[j].parentElement.classList.add("correct-answer")
-                    break
                 }
             }
         })
@@ -92,7 +91,7 @@ export default function Quiz() {
         document.getElementById("quiz").reset()
 
         allInputs.forEach(input => {
-            input.parentElement.classList.remove("wrong-answer", "correct-answer")
+            input.parentElement.classList.remove("wrong-answer", "correct-answer", "opaque-wrong-answers")
         })
         setQuizFinished(false)
         setNumCorrectAnswers(0)
@@ -104,7 +103,7 @@ export default function Quiz() {
                 {quizElements}
             </div>
             <div className="results">
-                {quizFinished ? <p>You scored correct {numCorrectAnswers}/{quizData.length} answers</p> : <p></p>}
+                {quizFinished ? <p>You scored {numCorrectAnswers}/{quizData.length} correct answers</p> : <p></p>}
                 <button onClick={quizFinished ? playAgain : submitQuiz}>{quizFinished ? "Play again" : "Check answers"}</button>
             </div>
         </form>

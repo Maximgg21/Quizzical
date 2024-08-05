@@ -4,12 +4,22 @@ import Quiz from "./Quiz"
 import "./App.css"
 
 export default function App() {
-  const [startQuiz, setStartQuiz] = React.useState(false)
+  const [isStartQuiz, setIsStartQuiz] = React.useState(false)
+  const [settings, setSettings] = React.useState([]) 
+
+  function startQuiz(amount, category, difficulty) {
+    setIsStartQuiz(true)
+    setSettings({amount, category, difficulty})
+  }
 
   return (
-    <main>
-      {startQuiz || <IntroPage startQuiz={() => setStartQuiz(true)}/>}
-      {startQuiz && <Quiz />}
-    </main>
+    <>
+      <main>
+        {isStartQuiz || <IntroPage startQuiz={startQuiz}/>}
+        {isStartQuiz && <Quiz {...settings}/>}
+      </main>
+      <img src="./src/assets/blue-blob.svg" className="blue-blob"/>
+      <img src="./src/assets/yellow-blob.svg" className="yellow-blob"/>
+    </>
   )
 }

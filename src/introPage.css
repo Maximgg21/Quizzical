@@ -26,3 +26,9 @@
     margin-top: 2em;
 }
 
+@media screen and (max-width: 650px) {
+    .settings-choice {
+        flex-direction: column;
+        align-items: center;
+    }
+}

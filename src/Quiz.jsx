@@ -9,19 +9,22 @@ export default function Quiz(props) {
     const [quizElements, setQuizElements] = React.useState([])
     const [numCorrectAnswers, setNumCorrectAnswers] = React.useState(0) 
     const [quizFinished, setQuizFinished] = React.useState(false)
+    const [loading, setLoading] = React.useState(false)
 
     React.useEffect(() => {
         async function getData() {
             try {
+                setLoading(true)
                 const response = await fetch(`https://opentdb.com/api.php?amount=${amount}&${category}&${difficulty}&type=multiple`)
                 const results = await response.json()
                 setQuizData(results.results)
-            } catch (error) {
+                setLoading(false)
+            } catch (err) {
                 // #FIXME: doesn't work
-                if (error.response && error.response.status === 427) {
+                if (err.response && err.response.status === 429) {
                     setTimeout(() => getData(), 2000)
                 } else {
-                    console.error(error)
+                    console.error(err)
                 }
             } 
         }
@@ -99,6 +102,7 @@ export default function Quiz(props) {
 
     return (
         <form className="quiz" id="quiz">
+            {loading && <p>loading...</p>}
             <div className="quiz-questions">
                 {quizElements}
             </div>
